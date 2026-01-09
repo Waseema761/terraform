@@ -1,1 +1,7 @@
-
+variable "filename" {
+    
+  
+}
+variable "content" {
+ 
+}
