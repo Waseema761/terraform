@@ -10,26 +10,7 @@ resource "aws_iam_user" "admin_user" {
   }
 }
 
-resource "aws_iam_policy" "adminuser" {
-  name = "AdminUsers"
-
-  policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "1234567890",
-      "Effect": "Allow",
-      "Action": "*",
-      "Resource": "*"
-    }
-  ]
-}
-EOF
-}
-
-resource "aws_iam_user_policy_attachment" "zoro_admin_access" {
+resource "aws_iam_user_policy_attachment" "zoro_s3_full_access" {
   user       = aws_iam_user.admin_user.name
-  policy_arn = aws_iam_policy.adminuser.arn
+  policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
 }
-
