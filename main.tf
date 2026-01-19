@@ -1,27 +1,35 @@
-resource "aws_iam_user" "Admin-user" {
+provider "aws" {
+  region = "us-east-1"
+}
+
+resource "aws_iam_user" "admin_user" {
   name = "zoro"
+
   tags = {
-    "description" = "Technical Team Lead"
+    description = "Technical Team Lead"
   }
 }
+
 resource "aws_iam_policy" "adminuser" {
-  name   = "AdminUsers"
+  name = "AdminUsers"
+
   policy = <<EOF
 {
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "1234567890",
-            "Effect": "Allow",
-            "Action": "*",
-            "Resource": "*"
-        }
-    ]
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "1234567890",
+      "Effect": "Allow",
+      "Action": "*",
+      "Resource": "*"
+    }
+  ]
 }
 EOF
 }
 
-resource "aws_iam_user_policy_attachment" "zoro-admin-access" {
-  user       = aws_iam_user.Admin-user.name
+resource "aws_iam_user_policy_attachment" "zoro_admin_access" {
+  user       = aws_iam_user.admin_user.name
   policy_arn = aws_iam_policy.adminuser.arn
 }
+
