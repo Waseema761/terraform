@@ -8,37 +8,33 @@ pipeline {
     }
 
     stages {
-
         stage('Checkout SCM') {
             steps {
                 git branch: 'main', url: 'https://github.com/Waseema761/terraform.git'
             }
         }
 
+        stage('List Files') {
+            steps {
+                sh 'pwd && ls -la'
+            }
+        }
+
         stage('Terraform Init') {
             steps {
-                sh '''
-                  cd terraform
-                  terraform init
-                '''
+                sh 'terraform init'
             }
         }
 
         stage('Terraform Plan') {
             steps {
-                sh '''
-                  cd terraform
-                  terraform plan
-                '''
+                sh 'terraform plan'
             }
         }
 
         stage('Terraform Apply') {
             steps {
-                sh '''
-                  cd terraform
-                  terraform apply -auto-approve
-                '''
+                sh 'terraform apply -auto-approve'
             }
         }
     }
