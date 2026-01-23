@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 resource "aws_iam_user" "admin_user" {
-  name = "zoro"
+  name = "asta"
 
   tags = {
     description = "Technical Team Lead"
